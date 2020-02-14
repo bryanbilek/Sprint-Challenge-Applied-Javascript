@@ -20,7 +20,14 @@
 
 axios.get("https://lambda-times-backend.herokuapp.com/articles")
     .then(response => {
-        console.log(response.data.articles);
+        // console.log(response.data.articles);
+        const articles = response.data.articles;
+        const items = Object.keys(response.data.articles);
+        items.forEach(item => {
+            articles[item].forEach(article => {
+                cardsContainer.append(articleCard(article));
+            })
+        });
     })
     .catch(error => {
         console.log("this is an error", error);
@@ -41,8 +48,8 @@ function articleCard(items) {
     author.classList.add("author");
     imgContainer.classList.add("img-container");
 
-    headline.textContent = items.headlineOfArticle;
-    img.src = items.urlAuthorImage;
+    headline.textContent = items.headline;
+    img.src = items.authorPhoto;
     byAuthorName.textContent = items.authorName;
 
     card.append(headline, author);

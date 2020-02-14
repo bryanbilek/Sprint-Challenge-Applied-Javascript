@@ -25,7 +25,6 @@ function tabs(items) {
     // console.log(items);
 
     const tab = document.createElement("div")
-    console.log('this is items', items);
     tab.classList.add("tab");
     tab.textContent = items;
 
